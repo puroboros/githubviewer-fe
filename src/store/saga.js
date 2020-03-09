@@ -1,6 +1,6 @@
 import {call, put, select, takeEvery} from 'redux-saga/effects'
 import {actionTypes, increaseIndexResponse, setAllItems} from "./actions";
-import {getData} from "../contants/api.constants";
+import {getData} from "../constants/api.constants";
 import {getIndex} from "./selectors";
 
 const getAllItems = function* () {

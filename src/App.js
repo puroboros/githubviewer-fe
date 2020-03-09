@@ -4,6 +4,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {getAllItems} from "./store/actions";
 import {useDataReducer} from "./store/reducer";
 import {Routes} from "./routes/routes";
+import styles from "./modules/view-element/view-element.module.scss";
 
 const App = () => {
     const data = useDataReducer();
@@ -17,11 +18,14 @@ const App = () => {
 
     return (
         <>
-            {data.length ?
-                <BrowserRouter>
-                    <Routes/>
-                </BrowserRouter>
-                : 'Loading data...'}
+            <div className={`${styles.container} ${styles.generalMarginBottom}`}>
+                {data.length ?
+                    <BrowserRouter>
+                        <Routes/>
+                    </BrowserRouter>
+                    :
+                    <h3>Loading data...</h3>}
+            </div>
         </>
     );
 
