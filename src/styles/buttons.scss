@@ -16,4 +16,11 @@
     background-color: lightgray;
     color: black;
   }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+    background-color: gray;
+    color: white;
+  }
 }

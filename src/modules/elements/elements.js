@@ -9,7 +9,9 @@ import {increaseIndexRequest} from "../../store/actions";
 const Elements = () => {
     const elements = useDataReducer();
     const dispatch = useDispatch();
-    const loadMoreElements = () => dispatch(increaseIndexRequest());
+    const loadMoreElements = () => {
+        dispatch(increaseIndexRequest())
+    };
 
     return (
         <div className={`${styles.container} ${styles.generalMarginBottom}`}>
