@@ -8,17 +8,11 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = createStore(reducer, composeWithDevTools(
-    compose(
-        applyMiddleware(
-            sagaMiddleware
-        ),
-    )
+    compose(applyMiddleware(sagaMiddleware))
 ));
 
 const rootSaga = function* () {
-    yield all([
-        coreSaga(),
-    ])
+    yield all([coreSaga()])
 };
 
 sagaMiddleware.run(rootSaga);
