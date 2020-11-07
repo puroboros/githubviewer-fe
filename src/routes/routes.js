@@ -1,36 +1,39 @@
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import React, {lazy, Suspense} from 'react'
+import { Route, Switch } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
 
-const Header = lazy(() => import('../components/header/header'));
-const Footer = lazy(() => import('../components/footer/footer'));
-const NotFound = lazy(() => import('../modules/not-found/not-found'));
-const Elements = lazy(() => import('../modules/elements/elements'));
-const ViewElement = lazy(() => import('../modules/view-element/view-element'));
+import NotFound from '../modules/not-found/not-found';
+import ListRepositories from '../modules/repository/list-repositories/list-repositories';
+import Entry from '../modules/entry/entry';
+import RepositoryDetails from '../modules/repository/repository-details/repository-details';
 
 export const paths = {
     root: '/',
-    viewElement: '/view-element/:id',
-    viewElementBase: '/view-element/',
+    repoViewUrl: '/view-org/',
+    repoView: '/view-org/:orgId',
+    viewElement: '/view-repo/:orgId/:id',
+    viewElementBase: '/view-repo/',
 };
 
 export const Routes = () => (
-    <Router basename={process.env.REACT_APP_APP_BASE_URL}>
-        <Suspense fallback='Loading component...'>
-            <Header/>
-            <Switch>
-                <Route
-                    exact
-                    path={paths.root}
-                    render={props => <Elements {...props} />}
-                />
-                <Route
-                    exact
-                    path={paths.viewElement}
-                    render={props => <ViewElement {...props} />}
-                />
-                <Route render={props => <NotFound {...props} />}/>
-            </Switch>
-            <Footer/>
-        </Suspense>
-    </Router>
+    <>
+        <Switch>
+
+            <Route
+                exact
+                path={paths.viewElement}
+                render={props => <RepositoryDetails {...props} />}
+            />
+            <Route
+                exact
+                path={paths.repoView}
+                render={props => <ListRepositories {...props} />}
+            />
+            <Route
+                exact
+                path={paths.root}
+                render={props => <Entry {...props} />}
+            />
+            <Route render={props => <NotFound {...props} />}/>
+        </Switch>
+    </>
 );

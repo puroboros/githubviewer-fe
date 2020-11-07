@@ -1,22 +1,22 @@
 export const actionTypes = {
-    getAllItemsAction: 'GET_ALL_ITEMS',
-    setAllItemsAction: 'SET_ALL_ITEMS',
-    increaseIndexRequest: 'INCREASE_INDEX_REQUEST',
-    increaseIndexResponse: 'INCREASE_INDEX_RESPONSE'
+    getReposFromCompanyRequest: 'GET_REPOS_FROM_COMPANY_REQUEST',
+    getReposFromCompanyResponse: 'GET_REPOS_FROM_COMPANY_RESPONSE',
+    getSingleRepoRequest: 'GET_SINGLE_REPO_REQUEST',
+    getSingleRepoResponse: 'GET_SINGLE_REPO_RESPONSE'
 };
 
-export function getAllItems() {
-    return {type: actionTypes.getAllItemsAction}
+export const getReposFromCompany = (company) => {
+    return { type: actionTypes.getReposFromCompanyRequest, payload: company }
 }
 
-export function setAllItems(items) {
-    return {type: actionTypes.setAllItemsAction, payload: items}
-}
-
-export const increaseIndexRequest = () => {
-    return {type: actionTypes.increaseIndexRequest}
+export const getReposFromCompanyResponse = (payload) => {
+    return { type: actionTypes.getReposFromCompanyResponse, payload }
 };
 
-export const increaseIndexResponse = () => {
-    return {type: actionTypes.increaseIndexResponse}
+export const getSingleRepo = (company, repoName) => {
+    return { type: actionTypes.getSingleRepoRequest, payload: { company, repoName } }
+}
+
+export const getSingleRepoResponse = (payload) => {
+    return { type: actionTypes.getSingleRepoResponse, payload }
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './footer.module.scss';
 
-const footer = () => {
+const Footer = () => {
     return (
         <footer className={styles.footer}>
-            Copyright © {new Date().getFullYear()}
+            Copyleft {new Date().getFullYear()}
         </footer>
     );
 };
 
-export default footer;
+export default Footer;

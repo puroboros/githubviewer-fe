@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './header.module.scss';
 
-const header = () => {
+const Header = () => {
     return (
         <header className={styles.header}>
             <h2>{process.env.REACT_APP_APP_NAME}</h2>
@@ -9,4 +9,4 @@ const header = () => {
     );
 };
 
-export default header;
+export default Header;

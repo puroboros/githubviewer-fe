@@ -1,3 +1,5 @@
-import {axiosInstance} from "./axios.constants";
+import {axiosInstance} from './axios.constants';
 
-export const getData = async (index) => await axiosInstance.get(`character/?page=${index}`);
+export const getRepoList = async (orgId) => await axiosInstance.get(`${orgId}`);
+
+export const getSingleRepo = async (orgId, repoName) => await axiosInstance.get(`${orgId}/${repoName}`);

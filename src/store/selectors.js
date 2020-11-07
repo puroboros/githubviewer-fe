@@ -1,1 +1,1 @@
-export const getIndex = (state) => state.index;
+export const getRepos = (state) => state.repos;

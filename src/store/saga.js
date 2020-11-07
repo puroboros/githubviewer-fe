@@ -1,30 +1,27 @@
-import {call, put, select, takeEvery} from 'redux-saga/effects'
-import {actionTypes, increaseIndexResponse, setAllItems} from "./actions";
-import {getData} from "../constants/api.constants";
-import {getIndex} from "./selectors";
+import { call, put, takeEvery } from 'redux-saga/effects'
+import { actionTypes, getReposFromCompanyResponse, getSingleRepoResponse } from './actions';
+import { getRepoList, getSingleRepo } from '../constants/api.constants';
 
-const getAllItems = function* () {
+const getRepositoriesFromCompaniesEffect = function* (action) {
     try {
-        const index = yield select(getIndex);
-        const response = yield call(getData, index);
-        yield put(setAllItems(response.results));
+        const response = yield call(getRepoList, action.payload);
+        yield put(getReposFromCompanyResponse(response));
     } catch (error) {
         console.error('saga error', error);
     }
 };
 
-const increaseIndexAndGetMoreData = function* () {
+const getSingleRepositoryEffect = function* (action) {
     try {
-        yield put(increaseIndexResponse());
-        const index = yield select(getIndex);
-        const response = yield call(getData, index);
-        yield put(setAllItems(response.results));
+        const response = yield call(getSingleRepo, action.payload.company, action.payload.repoName);
+        yield put(getSingleRepoResponse(response));
     } catch (error) {
         console.error('saga error', error);
     }
 };
+
 
 export const coreSaga = function* () {
-    yield takeEvery(actionTypes.getAllItemsAction, getAllItems);
-    yield takeEvery(actionTypes.increaseIndexRequest, increaseIndexAndGetMoreData);
+    yield takeEvery(actionTypes.getReposFromCompanyRequest, getRepositoriesFromCompaniesEffect);
+    yield takeEvery(actionTypes.getSingleRepoRequest, getSingleRepositoryEffect);
 };

@@ -4,12 +4,10 @@ import styles from './elements.module.scss'
 import {paths} from "../../routes/routes";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {increaseIndexRequest} from "../../store/actions";
 
 const Elements = () => {
     const elements = useDataReducer();
     const dispatch = useDispatch();
-    const loadMoreElements = () => dispatch(increaseIndexRequest());
 
     return (
         <div className={`${styles.container} ${styles.generalMarginBottom}`}>
@@ -20,7 +18,7 @@ const Elements = () => {
                     </h2>
                 )
             })}
-            <button className={`${styles.btn} ${styles.marginTop}`} onClick={loadMoreElements}>Load More</button>
+            <button className={`${styles.btn} ${styles.marginTop}`} >Load More</button>
         </div>
     );
 };
