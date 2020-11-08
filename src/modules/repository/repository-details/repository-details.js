@@ -16,7 +16,8 @@ const RepositoryDetails = () => {
         }
     }, [dispatch, orgId, id, repo, loading]);
 
-    const trackRepo = () => {
+    const trackRepo = (e) => {
+        e.preventDefault();
         dispatch(saveRepositoryRequest(repo));
     }
 
