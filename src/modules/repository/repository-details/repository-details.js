@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams } from "react-router-dom";
-import { useLoadingSingleRepoReducer, useSelectedReducer } from "../../../store/reducer";
+import { useParams } from 'react-router-dom';
+import { useLoadingSingleRepoReducer, useSelectedReducer, useSavedReducer } from "../../../store/reducer";
 import { useDispatch } from "react-redux";
 import { getSingleRepo } from "../../../store/actions";
 
@@ -9,13 +9,17 @@ const RepositoryDetails = () => {
     const loading = useLoadingSingleRepoReducer();
     const repo = useSelectedReducer();
     const { orgId, id } = useParams();
+    const saved = useSavedReducer();
     useEffect(() => {
-        console.log('loading ', loading);
-        console.log('repo ', repo);
         if (!repo && !loading) {
             dispatch(getSingleRepo(orgId, id));
         }
     }, [dispatch, orgId, id, repo, loading]);
+
+    const trackRepo = () => {
+        dispatch(saveRepositoryRequest(repo));
+    }
+
     return (<>
         {loading || !repo? <div>Loading...</div> :
             <div>
@@ -32,7 +36,7 @@ const RepositoryDetails = () => {
                         Link:
                     </div>
                     <div>
-                        {repo.url}
+                        <a href={repo.html_url}  rel="noopener noreferrer" target={'_blank'}>{repo.html_url}</a>
                     </div>
                 </div>
                 <div>
@@ -43,6 +47,17 @@ const RepositoryDetails = () => {
                     <div>Watchers:</div>
                     <div>{repo.watchers_count}</div>
                 </div>
+                <div>
+                    <h3>Commits:</h3>
+                    <div>
+                        {repo.commits.map((commit, index) => <div key={index}>
+                            <div>Message: {commit.message}</div>
+                            <div>Date: {commit.timestamp}</div>
+                        </div>)}
+                    </div>
+
+                </div>
+                <button onClick={trackRepo} disabled={saved!==null}>Track Repo</button>
             </div>}
     </>);
 };

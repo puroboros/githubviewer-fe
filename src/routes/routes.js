@@ -1,5 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 
 import NotFound from '../modules/not-found/not-found';
 import ListRepositories from '../modules/repository/list-repositories/list-repositories';

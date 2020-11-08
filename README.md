@@ -13,5 +13,8 @@ serve webapp:
 npm run start 
 ``` 
 
-Start coding..  :yum:
+You will need Backend App in order to run it properly:
+
+https://github.com/puroboros/githubviewer-be
+
 

@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { actionTypes, getReposFromCompanyResponse, getSingleRepoResponse } from './actions';
-import { getRepoList, getSingleRepo } from '../constants/api.constants';
+import { actionTypes, getReposFromCompanyResponse, getSingleRepoResponse, saveRepositoryResponse } from './actions';
+import { getRepoList, getSingleRepo, saveRepo } from '../constants/api.constants';
 
 const getRepositoriesFromCompaniesEffect = function* (action) {
     try {
@@ -20,8 +20,18 @@ const getSingleRepositoryEffect = function* (action) {
     }
 };
 
+const saveRepositoryEffect = function* (action) {
+    try {
+        const response = yield call(saveRepo, action.repo);
+        yield put(saveRepositoryResponse(response));
+    } catch (error) {
+        console.error('saga error', error);
+    }
+};
+
 
 export const coreSaga = function* () {
     yield takeEvery(actionTypes.getReposFromCompanyRequest, getRepositoriesFromCompaniesEffect);
     yield takeEvery(actionTypes.getSingleRepoRequest, getSingleRepositoryEffect);
+    yield takeEvery(actionTypes.saveRepositoryRequest, saveRepositoryEffect);
 };
