@@ -17,4 +17,7 @@ You will need Backend App in order to run it properly:
 
 https://github.com/puroboros/githubviewer-be
 
+## TODO:
+Add backend error handling
+
 
