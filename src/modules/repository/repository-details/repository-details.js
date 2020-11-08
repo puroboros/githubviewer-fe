@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useLoadingSingleRepoReducer, useSelectedReducer, useSavedReducer } from "../../../store/reducer";
-import { useDispatch } from "react-redux";
-import { getSingleRepo } from "../../../store/actions";
+import { useLoadingSingleRepoReducer, useSelectedReducer, useSavedReducer } from '../../../store/reducer';
+import { useDispatch } from 'react-redux';
+import { getSingleRepo, saveRepositoryRequest } from '../../../store/actions';
 
 const RepositoryDetails = () => {
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const RepositoryDetails = () => {
                         Link:
                     </div>
                     <div>
-                        <a href={repo.html_url}  rel="noopener noreferrer" target={'_blank'}>{repo.html_url}</a>
+                        <a href={repo.html_url}  rel='noopener noreferrer' target={'_blank'}>{repo.html_url}</a>
                     </div>
                 </div>
                 <div>
